@@ -1,14 +1,13 @@
 
-import './App.css'
+import "./index.css";
+import CITest from './Component/comp1'
 
 function App() {
-  
+
 
   return (
     <>
-      <div>
-        <h2>let start ci/cd</h2>
-      </div>
+      <CITest />
     </>
   )
 }
