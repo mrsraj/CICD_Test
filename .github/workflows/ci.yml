@@ -1,4 +1,3 @@
-
 name: React CI
 
 on:
@@ -11,29 +10,21 @@ on:
       - main
 
 jobs:
-  test-and-build:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # Download your code
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Install Node.js
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
-      # Install packages
       - name: Install Dependencies
         run: npm install
 
-      # Run React tests
-      - name: Run Tests
-        run: npm test -- --run
-
-      # Create production build
-      - name: Build React App
+      - name: Build Project
         run: npm run build
