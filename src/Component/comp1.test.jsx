@@ -17,25 +17,30 @@ describe("Posts Component", () => {
     });
 
     test("displays posts after API response", async () => {
-
         const mockPosts = [
             {
-                "userId": 1,
-                "id": 1,
-                "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-                "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-            }
+                id: 1,
+                title: "Test Post",
+                body: "Test Body",
+            },
         ];
 
         global.fetch = vi.fn(() =>
             Promise.resolve({
-                json: () => Promise.resolve(mockPosts)
+                ok: true,
+                json: () => Promise.resolve(mockPosts),
             })
         );
 
-        render(<Posts />);
-        const postTitle = await screen.findByText("Test Post");
-        expect(postTitle).toBeInTheDocument();
+        render(<CITest />);
+
+        expect(
+            await screen.findByText("Test Post")
+        ).toBeInTheDocument();
+
+        expect(
+            screen.getByText("Test Body")
+        ).toBeInTheDocument();
     });
 
     test("handles API failure", async () => {
